@@ -4,7 +4,7 @@ class EmployeeItem extends Component {
   render() {
     return (
       <li className="employee-item">
-        Arrthur Pai
+        {`${this.props.employee.firstName} ${this.props.employee.lastName}`}
       </li>
     );
   }

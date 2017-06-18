@@ -5,8 +5,9 @@ class EmployeeList extends Component {
   render() {
     return (
       <ul className="employee-list">
-        <EmployeeItem />
-        <EmployeeItem />
+        {this.props.employees.map(employee => (
+          <EmployeeItem key={employee.id} employee={employee} />
+        ))}
       </ul>
     );
   }
