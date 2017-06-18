@@ -13,6 +13,14 @@ class App extends Component {
     };
   }
 
+  search = (searchKey) => {
+    const employees = this.props.services.findByName(searchKey)
+
+    this.setState({
+      employees: employees,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -20,7 +28,7 @@ class App extends Component {
         <div className="contacts">
           <div className="contacts-panel">
             <div className="employee-list-panel">
-              <SearchBar className="search-bar" />
+              <SearchBar className="search-bar" search={this.search} />
               <EmployeeList employees={this.state.employees} />
             </div>
             <div className="employee-details-panel">
