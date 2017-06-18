@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       employees: this.props.services.findByName(""),
+      currentEmployeeId: null,
     };
   }
 
@@ -21,7 +22,15 @@ class App extends Component {
     });
   }
 
+  onSelected = (id) => {
+    this.setState({
+      currentEmployeeId: id,
+    });
+  }
+
   render() {
+    const employee = this.props.services.findById(this.state.currentEmployeeId);
+
     return (
       <div className="App">
         <Header text="Employee Directory"/>
@@ -29,10 +38,11 @@ class App extends Component {
           <div className="contacts-panel">
             <div className="employee-list-panel">
               <SearchBar className="search-bar" search={this.search} />
-              <EmployeeList employees={this.state.employees} />
+              <EmployeeList employees={this.state.employees}
+                            onSelected={this.onSelected} />
             </div>
             <div className="employee-details-panel">
-              <EmployeeDetails />
+              <EmployeeDetails employee={employee}/>
             </div>
           </div>
         </div>

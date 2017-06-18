@@ -1,4 +1,16 @@
-const EmployeeService = (function() {
+const EmployeeService = function() {
+  const findById = function(id) {
+    let employee = null;
+    for (let i = 0; i < employees.length; i++) {
+      if (employees[i].id == id) {
+        employee = employees[i];
+        break;
+      }
+    }
+
+    return employee;
+  };
+
   const findByName = function(searchKey) {
     var results = employees.filter(function(element) {
       var fullName = element.firstName + " " + element.lastName;
@@ -6,9 +18,9 @@ const EmployeeService = (function() {
     });
 
     return results;
-  },
+  };
 
-  employees = [
+  const employees = [
     {
       "id": 1,
       "firstName": "James",
@@ -205,7 +217,7 @@ const EmployeeService = (function() {
   ];
 
   // The public API
-  return {findByName: findByName};
-});
+  return {findById: findById, findByName: findByName};
+};
 
 export default EmployeeService;

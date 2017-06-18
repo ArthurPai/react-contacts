@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 
 class EmployeeItem extends Component {
   render() {
-    const name = `${this.props.employee.firstName} ${this.props.employee.lastName}`;
+    const employee = this.props.employee;
+    const name = `${employee.firstName} ${employee.lastName}`;
     return (
-      <div className="employee-item">
-        <img src={`images/${this.props.employee.pic}`} alt={name} />
+      <div className="employee-item" onClick={() => this.props.onSelected(employee.id)}>
+        <img src={`images/${employee.pic}`} alt={name} />
         <span>{name}</span>
         <p>{this.props.employee.title}</p>
       </div>

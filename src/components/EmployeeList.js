@@ -6,7 +6,7 @@ class EmployeeList extends Component {
     return (
       <div className="employee-list">
         {this.props.employees.map(employee => (
-          <EmployeeItem key={employee.id} employee={employee} />
+          <EmployeeItem key={employee.id} employee={employee} onSelected={this.props.onSelected} />
         ))}
       </div>
     );
