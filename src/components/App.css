@@ -8,3 +8,31 @@
   padding: 5px;
   color: white;
 }
+
+.contacts {
+  width: 800px;
+  margin: auto;
+}
+
+.search-bar {
+  width: 100%;
+}
+
+.contacts-panel {
+  display: flex;
+}
+
+.employee-list-panel {
+  width: 50%;
+}
+
+.employee-details-panel {
+  width: 50%;
+}
+
+.employee-list {
+}
+
+.employee-item {
+  list-style: none;
+}
