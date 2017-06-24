@@ -2,6 +2,7 @@
   "name": "contacts",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://contacts.arthur.surge.sh",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
@@ -12,6 +13,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "surge --project build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
