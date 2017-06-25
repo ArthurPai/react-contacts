@@ -1,26 +1,5 @@
-const EmployeeService = function() {
-  const findById = function(id) {
-    let employee = null;
-    for (let i = 0; i < employees.length; i++) {
-      if (employees[i].id === id) {
-        employee = employees[i];
-        break;
-      }
-    }
-
-    return employee;
-  };
-
-  const findByName = function(searchKey) {
-    var results = employees.filter(function(element) {
-      var fullName = element.firstName + " " + element.lastName;
-      return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
-    });
-
-    return results;
-  };
-
-  const employees = [
+{
+  "employees": [
     {
       "id": 1,
       "firstName": "James",
@@ -214,10 +193,5 @@ const EmployeeService = function() {
       "twitterId": "@fakeswells",
       "blog": "http://coenraets.org"
     }
-  ];
-
-  // The public API
-  return {findById: findById, findByName: findByName};
-};
-
-export default EmployeeService;
+  ]
+}

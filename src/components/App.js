@@ -8,28 +8,72 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      employees: this.props.services.findByName(""),
+      searchKey: "",
+      all_employees: [],
+      employees: [],
       currentEmployeeId: null,
     };
   }
 
+  findEmploeeById = (employees, id) => {
+    let employee = null;
+    for (let i = 0; i < employees.length; i++) {
+      if (employees[i].id === id) {
+        employee = employees[i];
+        break;
+      }
+    }
+
+    return employee;
+  }
+
+  findEmploeesByName = (employees, searchKey) => {
+    if (searchKey === "")
+      return employees;
+
+    const fliter_employees = employees.filter(function(element) {
+      const fullName = element.firstName + " " + element.lastName;
+      return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+    });
+
+    return fliter_employees;
+  }
+
+  componentDidMount() {
+    const self = this;
+    const employeesRef = this.props.firebase.database().ref('employees');
+
+    employeesRef.on('value', (snapshot) => {
+      const all_employees = snapshot.val();
+      const employees = self.findEmploeesByName(all_employees, self.state.searchKey);
+
+      this.setState({
+        all_employees: all_employees,
+        employees: employees
+      });
+    });
+  }
+
   search = (searchKey) => {
-    const employees = this.props.services.findByName(searchKey)
+    const employees = this.findEmploeesByName(this.state.all_employees, searchKey);
 
     this.setState({
+      searchKey: searchKey,
       employees: employees,
     });
   }
 
   onSelected = (id) => {
+    console.log(id);
     this.setState({
       currentEmployeeId: id,
     });
   }
 
   render() {
-    const employee = this.props.services.findById(this.state.currentEmployeeId);
+    const employee = this.findEmploeeById(this.state.employees, this.state.currentEmployeeId);
 
     return (
       <div className="App">
